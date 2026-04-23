@@ -109,9 +109,6 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  .svg-mount {
-    width: 100%;
-  }
   .cow-svg {
     width: 100%;
     height: auto;
@@ -120,13 +117,15 @@
 
   .cow-svg .cow-part {
     cursor: pointer;
+  }
+  .cow-svg .cow-part .primal-fill {
     transition: fill 0.3s ease;
   }
-  .cow-svg .cow-part:hover,
-  .cow-svg .cow-part.active {
+  .cow-svg .cow-part:hover .primal-fill,
+  .cow-svg .cow-part.active .primal-fill {
     fill: var(--bb-orange);
   }
-  .cow-svg .cow-part.active {
+  .cow-svg .cow-part.active .primal-fill {
     fill: var(--bb-orange-dark);
   }
 
@@ -417,15 +416,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .fade-in { animation: fadeUp 0.4s ease-out both; }
-
-  .cow-loading {
-    text-align: center;
-    padding: 4rem 2rem;
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    color: var(--charcoal);
-    opacity: 0.6;
-  }
 </style>
 </head>
 <body>
@@ -444,9 +434,7 @@
 <section class="stage">
   <div class="hint">Click on the cow</div>
   <div class="cow-wrap">
-    <div class="svg-mount" id="svgMount">
-      <div class="cow-loading">Loading cuts…</div>
-    </div>
+    <svg width="985" height="663" viewBox="0 0 985 663" fill="none" xmlns="http://www.w3.org/2000/svg" class="cow-svg"><g id="not-active-5"><path d="M792.183 496.554L792.288 496.555L815.421 496.616C806.825 516.863 779.272 581.922 771.425 601.48C770.574 603.628 763.011 605.412 763.011 605.412C763.011 605.412 761.977 617.795 758.956 620.106C753.928 623.956 731.748 622.578 724.49 621.93H724.186C722.564 621.788 718.509 621.666 718.509 621.666C718.509 621.666 722.462 610.337 725.97 600.102C726.659 598.075 730.167 597.588 730.937 595.298C735.965 580.361 747.643 541.387 747.643 541.387C752.043 524.483 755.246 511.431 755.753 502.878C755.8 500.752 755.582 498.627 755.104 496.555H783.996H784.746H792.004C792.035 496.555 792.105 496.554 792.183 496.554Z" fill="#2a1f1c"/></g><g id="not-active-4"><path d="M898.791 496.573C899.095 523.489 896.378 582.649 904.772 595.236C906.13 597.283 898.872 600.039 898.872 602.289C898.689 612.645 900.899 616.233 898.872 619.638C898.691 619.942 898.737 619.996 898.266 620.467C897.796 620.937 897.796 620.937 897.412 621.077C894.229 622.962 886.646 623.383 878.638 623.282H878.516C866.453 623.12 850.436 621.664 850.436 621.664C850.436 621.664 855.403 603.424 855.626 603.424C855.504 603.16 860.289 598.803 860.289 596.776C860.715 567.591 851.592 517.185 843.624 498.114C843.421 497.627 843.218 497.08 842.995 496.573H898.791Z" fill="#2a1f1c"/></g><g id="rear-shank" class="cow-part" data-primal="shank"><path class="primal-fill" d="M898.932 487.407C899.054 488.359 899.054 489.312 899.054 490.386L859.437 490.325H858.444H841.535C838.919 483.455 836.223 475.611 833.648 467.666C827.464 448.088 824.565 450.31 823.132 448.429C823.862 455.503 823.206 448.899 823.754 455.769C823.936 457.938 824.666 471.416 824.565 471.983C822.888 477.809 820.809 483.511 818.341 489.049L817.753 490.467H754.455C752.197 482.988 749.488 475.651 746.346 468.497C746.346 468.497 723.375 420.727 719.664 413.775L719.178 413.167V377.922H719.421C737.601 380.111 756.449 382.279 775.967 384.428L777.609 384.448C813.738 388.42 852.26 392.285 893.174 396.041C893.802 401.452 894.492 406.621 895.201 409.823C895.769 412.316 896.215 415.153 896.6 418.254L896.763 419.673C897.878 429.503 898.222 441.886 898.385 453.824C898.373 453.87 898.373 453.919 898.385 453.965V467.139C898.486 474.922 898.587 481.955 898.932 487.407Z" fill="#918676"/></g><g id="not-active-3"><path d="M387.607 505.107H340.975L336.799 588.467H339.962C339.962 588.467 339.962 588.467 339.962 588.569L336.555 593.676L333.453 598.338L328.811 615.403C328.811 615.403 356.789 617.004 362.953 612.302C365.771 610.154 368.001 605.188 369.765 599.29C370.495 596.878 377.875 596.27 378.483 593.676C381.139 581.394 378.483 572.74 378.483 565.748C378.544 551.155 383.876 525.395 387.607 505.107Z" fill="#2a1f1c"/></g><g id="not-active-2"><path d="M341.22 500.447H380.775C380.916 500.447 381.08 500.447 381.192 500.447C381.356 500.447 381.36 500.447 381.546 500.447H388.459C389.635 493.758 390.588 487.881 390.973 483.503C392.575 465.728 394.501 439.097 395.271 428.071L344.768 424.808H344.517L344.322 424.788L315.511 422.923C317.417 432.713 323.621 463.621 327.331 474.97C329.501 481.578 340.226 498.866 341.22 500.447Z" fill="#2a1f1c"/></g><g id="rump" class="cow-part" data-primal="sirloin"><path class="primal-fill" d="M716.036 127.786C716.036 132.528 716.219 137.433 716.3 142.5L719.442 373.69L823.06 384.971L819.193 136.683C818.767 124.948 818.281 113.842 817.733 103.606L817.612 101.357C817.449 98.3369 817.267 95.3981 817.105 92.5606C785.76 91.3243 742.089 91.4864 719.442 91.4864H715.286C715.529 101.62 715.691 113.051 715.996 125.657C715.996 125.808 716.023 127.139 716.036 127.786Z" fill="#918676"/></g><g id="thin-edge" class="cow-part" data-primal="shortloin"><path class="primal-fill" d="M713.076 253.912L712.955 242.765V242.299V240.373L712.813 238.488C712.61 221.97 712.407 205.553 712.205 189.623L711.515 142.777V139.319C711.211 121.078 710.887 104.864 710.562 91.3054C687.632 90.6771 630.437 88.4274 569.411 86.0156C570.039 89.4611 570.749 93.1092 571.438 96.9803C576.345 121.605 582.306 152.007 574.946 172.274C566.471 195.643 560.754 226.49 557.145 261.188L557.043 261.999C556.881 263.579 556.739 265.16 556.577 266.741L556.415 268.586C553.962 294.731 552.664 322.902 552.259 351.682C562.355 353.29 572.756 354.898 583.461 356.506C583.55 356.506 583.745 356.567 583.745 356.567H583.887L593.68 358.006L594.693 358.168L603.551 359.447L603.675 359.465L604.016 359.589C637.854 364.473 674.372 369.356 714.192 374.179L714.167 370.652C713.929 336.284 713.646 295.442 713.117 254.297L713.076 253.912Z" fill="#918676"/></g><g id="pashina" class="cow-part" data-primal="flank"><path class="primal-fill" d="M552.196 356.445C593.131 362.809 691.057 375.882 714.008 378.74L714.109 415.85C705.208 417.897 689.597 421.018 673.965 425.071L671.796 425.639C663.504 427.767 654.38 430.017 644.669 432.307L644.547 432.347C625.144 436.928 603.43 441.61 581.392 445.521C561.928 448.987 562.638 470.106 555.035 457.945L554.609 457.297C554.041 446.514 553.555 435.55 553.19 424.484L552.987 422.031C552.717 413.884 552.514 405.709 552.379 397.507V397.315C552.36 397.219 552.359 397.241 552.359 397.122C552.196 383.563 552.196 356.445 552.196 356.445Z" fill="#918676"/></g><g id="cut" class="cow-part" data-primal="shortplate"><path class="primal-fill" d="M549.52 451.298C539.727 442.319 524.866 440.637 511.465 439.603C505.848 439.178 500.476 438.874 495.711 438.225C495.894 438.144 467.347 433.928 440.727 429.875L439.814 429.672L403.462 424.2C404.861 408.493 407.902 373.653 411.389 330.969C444.863 337.941 486.344 345.825 536.686 353.932L538.409 354.277L546.154 355.513L547.573 355.761V357.439C547.391 377.503 547.634 397.812 548.222 417.836V418.201C548.263 419.66 548.364 421.119 548.364 422.578V422.923C548.689 432.476 549.074 441.934 549.52 451.298Z" fill="#918676"/></g><g id="thick-edge" class="cow-part" data-primal="rib"><path class="primal-fill" d="M556.313 230.968C556.313 230.441 556.454 229.914 556.536 229.387L556.698 228.455C559.516 208.812 570.566 170.692 570.566 170.692C577.468 151.672 571.679 121.986 567.02 98.0905L566.997 97.9725L566.889 97.4186C566.097 93.3661 565.346 89.5201 564.706 85.9336C515.723 84.0082 464.793 82.022 427.488 80.7249C426.576 126.813 421.406 203.424 416.053 273.489L416.013 274.077C415.262 283.826 414.512 293.433 413.762 302.816L413.661 304.195C413.073 311.673 412.485 319.01 411.897 326.124C439.835 331.981 472.051 338.143 508.951 344.466L509.235 344.527C520.751 346.486 532.733 348.472 545.182 350.486L545.364 350.506L547.594 350.871C548.182 309.12 550.696 268.524 555.887 233.481L556.313 230.968Z" fill="#918676"/></g><g id="brisket" class="cow-part" data-primal="brisket"><path class="primal-fill" d="M337.611 419.76L395.617 423.509L398.942 423.57C400.361 407.68 403.422 372.739 406.889 330.076C401.74 328.981 396.752 327.928 391.988 326.874C307.524 308.43 266.954 293.757 256.452 289.662C250.025 303.282 243.091 316.821 235.711 330.198C238.347 336.278 240.82 341.932 242.888 346.229C260.223 382.224 300.894 410.862 312.025 418.219L337.145 419.658L337.611 419.66Z" fill="#918676"/></g><g id="neck" class="cow-part" data-primal="chuck"><path class="primal-fill" d="M417.004 194.041L417.166 193.858V193.676H416.822L417.004 194.041Z" fill="#918676"/><path class="primal-fill" d="M315.632 123.631H315.49C310.198 144.487 302.98 169.172 293.978 195.824L293.755 196.513C283.583 226.739 271.8 256.399 258.457 285.366C269.71 289.703 313.868 305.431 407.333 325.192C408.692 308.228 410.131 290.149 411.55 271.645V271.463L411.53 271.402C411.976 265.747 412.402 260.032 412.828 254.316L412.909 253.222C413.193 249.31 413.497 245.399 413.781 241.467L413.943 239.926L417.166 193.858L417.004 194.041L416.822 193.676H417.166C418.707 170.51 420.066 148.175 421.08 128.009L421.201 125.314C422.032 108.532 422.62 93.3314 422.864 80.5021C399.325 79.7116 381.828 79.2049 374.712 79.2252H326.316C323.944 90.0278 320.437 105.269 315.632 123.631Z" fill="#918676"/></g><g id="not-active"><path d="M321.513 79.2452H287.918C279.504 79.2452 193.844 63.0312 193.844 63.0312C193.844 63.0312 204.103 43.5135 197.899 35.7511C185.47 20.2261 151.977 40.8179 151.267 40.4126C138.859 32.6501 132.635 31.0895 121.768 29.5492C116.55 28.7516 111.216 29.2814 106.258 31.0895C100.899 29.5095 95.6999 27.4332 90.7273 24.8877C79.0695 18.1183 69.0538 -0.750757 67.513 -0.000858568C62.8498 2.35017 73.8386 24.6039 81.8268 33.5216C84.8333 36.793 88.1616 39.7534 91.7613 42.3583C91.6397 42.4799 90.9301 41.7705 90.7881 41.9124C84.3206 39.7843 78.0557 37.6359 72.7641 33.5216C60.1533 23.7122 51.8204 2.0867 50.462 3.12034C44.2378 7.78187 54.8819 31.4949 62.8701 40.3721C67.8576 45.9254 75.8661 50.9112 81.5024 54.3364C66.4587 71.8881 53.5641 100.952 36.4929 128.82C27.0247 144.263 11.839 161.187 0.769097 172.273C-2.35319 175.394 4.47934 209.099 13.1771 214.186C31.8095 225.05 94.1335 198.297 106.318 206.424C120.288 215.727 153.964 215.544 157.532 217.287C161.587 219.314 205.218 264.673 213.247 279.488C218.538 289.237 226.405 308.187 233.42 324.644C278.024 243.574 304.056 152.654 316.403 101.56C318.451 93.0879 320.215 85.2646 321.513 79.2452Z" fill="#2a1f1c"/></g><g id="thigh-flesh" class="cow-part" data-primal="round"><path class="primal-fill" d="M924.945 478.881C925.943 489.66 926.248 500.491 925.857 511.309L925.776 512.079C925.066 535.508 922.127 559.384 919.126 570.308C917.504 566.133 917.099 556.587 917.099 556.587C916.932 561.592 915.319 566.442 912.456 570.551C912.456 570.551 909.333 554.925 910.753 548.844C908.445 553.593 908.081 559.053 909.739 564.065C905.116 557.438 902.298 544.001 901.061 528.253L901.021 527.827C900.615 522.557 900.291 517.065 900.291 511.471V511.025C900.108 496.169 902.541 461.025 907.184 445.5V287.231C906.9 267.247 904.468 234.475 902.623 208.674L902.399 205.614C901.832 197.73 901.325 190.575 900.98 184.819C900.98 212.748 898.081 242.258 896.317 268.605C893.215 315.16 890.721 375.8 890.721 375.8C890.721 375.8 891.269 384.069 892.141 392.987C869.541 390.906 847.658 388.792 826.492 386.643C826.633 374.463 826.796 334.009 826.492 284.88C826.654 284.921 826.35 284.566 826.593 284.424V283.887H826.492C826.309 257.215 826.005 228.05 825.478 199.453C825.474 199.272 825.461 199.119 825.458 198.931C825.455 198.79 825.458 198.724 825.458 198.581C824.89 168.058 824.059 138.265 822.862 112.951V112.89C822.538 105.837 822.173 99.1485 821.768 92.8859C831.378 93.3115 839.569 93.9195 845.185 94.7099C877.786 99.3715 900.717 123.51 908.827 139.724C916.592 155.209 916.673 175.537 916.794 178.232V178.623C916.815 178.824 916.815 178.729 916.815 178.861C924.661 353.121 916.409 443.433 916.409 443.433C920.626 453.141 923.83 468.362 924.945 478.881Z" fill="#918676"/></g></svg>
     <div class="primal-tooltip" id="tooltip"></div>
   </div>
 </section>
@@ -462,152 +450,311 @@
 
 <section class="cta">
   <h3>Questions about a cut? <em>Ask a real butcher.</em></h3>
-  <p>Our team has been cutting meat in Reno for four generations. Call us, or come see us — we\\'ll help you pick the right cut for what you\\'re cooking.</p>
+  <p>Our team has been cutting meat in Reno for four generations. Call us, or come see us — we'll help you pick the right cut for what you're cooking.</p>
   <a href="tel:7758256328" class="btn">Call 825-MEAT</a>
 </section>
 
 <script>
-// ============================================================
-// Butcher Boy Cut Guide — front-end
-// Fetches content from /api/content (which proxies Airtable),
-// renders the active animal\'s cut chart + interactive primals.
-// ============================================================
-
-const API_URL = '/api/content';
-const ACTIVE_ANIMAL_SLUG = 'beef';  // change to render a different animal
-
-let PRIMALS = {};   // populated after fetch — keyed by SVG path id
-let cowWrap, detailInner, tooltip;
-
-document.addEventListener('DOMContentLoaded', init);
-
-async function init() {
-  cowWrap     = document.querySelector('.cow-wrap');
-  detailInner = document.getElementById('detailInner');
-  tooltip     = document.getElementById('tooltip');
-  const svgMount = document.getElementById('svgMount');
-
-  try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error('Content fetch failed: ' + res.status);
-    const data = await res.json();
-
-    const animal = (data.animals || []).find(a => a.slug === ACTIVE_ANIMAL_SLUG);
-    if (!animal) throw new Error('Active animal not found: ' + ACTIVE_ANIMAL_SLUG);
-
-    // Index primals by their SVG path id so click handlers can find them
-    PRIMALS = {};
-    animal.primals.forEach((p, i) => {
-      PRIMALS[p.svgPathId] = {
-        number: String(i + 1).padStart(2, '0'),
-        name: p.name,
-        subtitle: p.subtitle,
-        description: p.description,
-        subprimals: p.cuts.map(c => ({
-          name: c.name,
-          method: c.method,
-          desc: c.desc,
-          timing: c.timing,
-          bestFor: c.bestFor,
-          photo: c.photo,
-          recipes: c.recipes,
-        })),
-      };
-    });
-
-    // Load the SVG (from Airtable attachment URL) and wire it up
-    if (animal.svgUrl) {
-      await loadCowSvg(animal.svgUrl, svgMount);
-    } else {
-      svgMount.innerHTML = '<p class="cow-loading">No cut chart uploaded yet for ' + animal.name + '.</p>';
-      return;
-    }
-
-    wireInteractions();
-  } catch (err) {
-    console.error(err);
-    svgMount.innerHTML = '<p class="cow-loading">Couldn\'t load the cut chart. Try refreshing in a minute.</p>';
-  }
-}
-
-async function loadCowSvg(url, svgMount) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('SVG fetch failed: ' + res.status);
-  const svgText = await res.text();
-  // Drop the SVG into the dedicated mount container (NOT cowWrap, which holds the tooltip)
-  svgMount.innerHTML = svgText;
-
-  const svgEl = svgMount.querySelector('svg');
-  if (svgEl) {
-    svgEl.classList.add('cow-svg');
-    // Make it responsive — strip explicit width/height
-    svgEl.removeAttribute('width');
-    svgEl.removeAttribute('height');
-  }
-
-  // Map of SVG path id → primal key in PRIMALS.
-  // Most are 1:1, but the steer SVG has TWO shank paths (front leg, rear leg)
-  // and we want both to route to our single Shank primal entry.
-  const SVG_TO_PRIMAL = {
-    'chuck':       'chuck',
-    'rib':         'rib',
-    'shortloin':   'shortloin',
-    'sirloin':     'sirloin',
-    'round':       'round',
-    'brisket':     'brisket',
-    'shortplate':  'shortplate',
-    'flank':       'flank',
-    'shank-rear':  'shank',
-    'shank-front': 'shank',
-  };
-
-  // Wire each SVG path to its corresponding primal, and force-reset its fill
-  // so any color baked into the source SVG (e.g. an originally-orange Sirloin)
-  // doesn't make it look pre-selected.
-  const PRIMAL_FILL = '#918676';  // matches the gray used by the rest of the cow
-  Object.entries(SVG_TO_PRIMAL).forEach(([svgId, primalKey]) => {
-    const el = svgMount.querySelector('#' + CSS.escape(svgId));
-    if (!el) return;
-    if (!PRIMALS[primalKey]) return;  // Airtable has no entry for this primal
-    el.classList.add('cow-part');
-    el.setAttribute('data-primal', primalKey);
-    // Force-reset fill so the CSS hover/active states control color
-    el.setAttribute('fill', PRIMAL_FILL);
-  });
-}
-
-function wireInteractions() {
-  const parts = cowWrap.querySelectorAll('.cow-part');
-  parts.forEach(p => {
-    const primalId = p.dataset.primal;
-    const primal = PRIMALS[primalId];
-
-    p.addEventListener('mouseenter', () => {
-      if (primal) {
-        tooltip.textContent = primal.name;
-        tooltip.classList.add('visible');
+const PRIMALS = {
+  sirloin: {
+    number: '01', name: 'Sirloin',
+    subtitle: 'The workhorse. Great flavor, honest price.',
+    description: "The sirloin sits just behind the short loin, along the back near the hip. It's a little firmer and more worked than the loin, which means more flavor per dollar. Top sirloin steaks are weeknight heroes, and the bottom sirloin is home to one of the West Coast's great secrets: the tri-tip.",
+    subprimals: [
+      { name: 'Top Sirloin Steak', method: 'Grill or Pan Sear',
+        desc: "Lean, flavorful, and budget-friendly. Not as tender as a strip or ribeye, but full of honest beef flavor.",
+        timing: '4 min per side', bestFor: 'Weeknight steak night, fajitas',
+        recipes: [{ name: 'Grilled Top Sirloin', desc: 'Marinate 2 hours, grill hot and fast, slice thin against the grain.', tag: 'Marinade' }]
+      },
+      { name: 'Tri-Tip', method: 'Grill or Roast',
+        desc: "A California classic. Triangular shape, rich beefy flavor, works equally well on the grill or as a small roast. Slice against the grain — the grain changes direction in this cut.",
+        timing: '20-30 min on the grill, rest 10', bestFor: 'Santa Maria style, Sunday dinner',
+        recipes: [
+          { name: 'Santa Maria Tri-Tip', desc: 'Garlic, salt, pepper, oak wood if you can get it. Indirect heat, then sear.', tag: 'West Coast' },
+          { name: 'Tri-Tip Sandwiches', desc: 'Leftovers sliced thin on a crusty roll with horseradish cream.', tag: 'Sandwich' }
+        ]
+      },
+      { name: 'Sirloin Tip Roast', method: 'Roast',
+        desc: "A lean, affordable roast that slices beautifully. Great for Sunday dinner or sliced thin for sandwiches.",
+        timing: 'Roast to 130°F internal, rest', bestFor: 'Sunday roast, meal prep',
+        recipes: [{ name: 'Herb-Crusted Sirloin Tip', desc: 'Rubbed with garlic, rosemary, and mustard. Roasted to medium-rare and rested.', tag: 'Roast' }]
+      },
+      { name: 'Bavette (Sirloin Flap)', method: 'Grill or Pan Sear',
+        desc: "A bistro-style cut from the bottom sirloin — loose-grained, richly marbled, and marinade-friendly. The French call it bavette. Bold beef flavor, great for steak sandwiches and tacos. Slice thin against the grain.",
+        timing: '3-4 min per side, rest, slice thin', bestFor: 'Steak sandwiches, tacos, bistro dinners',
+        recipes: [
+          { name: 'Grilled Bavette', desc: 'Quick marinade in garlic and herbs, hot grill, sliced thin against the grain.', tag: 'Bistro' },
+          { name: 'Bavette Steak Frites', desc: 'Pan-seared medium-rare, sliced across the grain, served with crispy fries and a pan sauce.', tag: 'French' }
+        ]
+      },
+      { name: 'Picanha', method: 'Grill or Roast',
+        desc: "The Brazilian churrasco king. Cut from the top of the rump with the fat cap left on — that fat renders down and bastes the meat as it cooks. Score the fat, salt heavily, and cook hot. One of the most flavorful cuts on the whole animal when treated right.",
+        timing: '6-8 min per side over high heat, fat-side first', bestFor: 'Brazilian churrasco, grilling, impressing guests',
+        recipes: [
+          { name: 'Churrasco Picanha', desc: 'Thick-sliced, skewered in a C-shape, coarse salt, hot grill. Carve thin slices from the outside as it cooks.', tag: 'Brazilian' },
+          { name: 'Whole Roasted Picanha', desc: 'Fat-cap scored, salted, reverse-seared to medium-rare. Rest, slice against the grain.', tag: 'Roast' }
+        ]
       }
-    });
-    p.addEventListener('mousemove', (e) => {
-      const rect = cowWrap.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left + 15) + 'px';
-      tooltip.style.top  = (e.clientY - rect.top - 10) + 'px';
-    });
-    p.addEventListener('mouseleave', () => {
-      tooltip.classList.remove('visible');
-    });
+    ]
+  },
+  shortloin: {
+    number: '02', name: 'Short Loin',
+    subtitle: 'Steakhouse royalty. The tenderloin lives here.',
+    description: "The short loin sits just behind the rib, along the back of the steer. Minimally worked, this is where you find the most tender cuts in the whole animal — the T-bone, the porterhouse, the New York strip, and the tenderloin (filet mignon). If you want a special-occasion steak, this is the neighborhood.",
+    subprimals: [
+      { name: 'New York Strip', method: 'Grill or Pan Sear',
+        desc: "A classic steakhouse cut with great beefy flavor and a firm bite. Less marbling than a ribeye, but more bold beef character.",
+        timing: '4 min per side for medium-rare', bestFor: 'Steak night, grilling',
+        recipes: [{ name: 'Pan-Seared NY Strip', desc: 'Cast iron, high heat, butter baste. Finish with flaky salt and cracked pepper.', tag: 'Cast Iron' }]
+      },
+      { name: 'Tenderloin / Filet Mignon', method: 'Pan Sear or Roast',
+        desc: "The most tender cut of beef, period. Mild flavor, buttery texture. Perfect for those who prize tenderness above all.",
+        timing: '3-4 min per side', bestFor: 'Anniversaries, whole roast (Chateaubriand)',
+        recipes: [
+          { name: 'Pan-Seared Filet', desc: 'Salt & pepper, hot pan, butter & herbs at the end. Under 10 minutes total.', tag: 'Quick' },
+          { name: 'Beef Wellington', desc: 'Whole tenderloin, mushroom duxelles, prosciutto, puff pastry. The ultimate dinner party showpiece.', tag: 'Advanced' }
+        ]
+      },
+      { name: 'T-Bone / Porterhouse', method: 'Grill',
+        desc: "Two steaks in one — strip on one side of the bone, tenderloin on the other. Porterhouse is just a bigger T-bone with more tenderloin.",
+        timing: '5-6 min per side', bestFor: 'Sharing, outdoor grilling',
+        recipes: [{ name: 'Bistecca alla Fiorentina', desc: 'Thick porterhouse, high heat, olive oil & rosemary. Served rare, sliced off the bone.', tag: 'Italian' }]
+      }
+    ]
+  },
+  rib: {
+    number: '03', name: 'Rib',
+    subtitle: 'The prime real estate. Marbled, tender, legendary.',
+    description: "The rib primal sits between the chuck and the short loin, along the upper back. It's the least-worked part of the animal, which means it's exceptionally tender — and it carries beautiful marbling that melts into rich, buttery flavor. This is where prime rib and ribeye come from. Steakhouse territory, every time.",
+    subprimals: [
+      { name: 'Ribeye Steak', method: 'Grill or Pan Sear',
+        desc: "The gold standard of steaks. Rich marbling, unbeatable flavor, and forgiving to cook. Bone-in or boneless — both are excellent.",
+        timing: '4-5 min per side for 1.5" thick', bestFor: 'Special occasions, date night',
+        recipes: [
+          { name: 'Reverse-Sear Ribeye', desc: 'Low oven to 115°F internal, then blast in a screaming hot pan for a perfect crust.', tag: 'Technique' },
+          { name: 'Cowboy Ribeye', desc: 'Bone-in, seasoned simply, grilled over high heat. Rest 10 minutes. Serve whole.', tag: 'Grill' }
+        ]
+      },
+      { name: 'Prime Rib Roast', method: 'Roast',
+        desc: "The king of holiday roasts. A standing rib roast cooked low and slow until medium-rare throughout — then a hot sear to finish.",
+        timing: 'Low oven until 125°F, sear at 500°F', bestFor: 'Christmas, Easter, dinner parties',
+        recipes: [{ name: 'Classic Prime Rib', desc: 'Salt 24 hours ahead, slow roast at 250°F, rest, then blast at 500°F for the crust.', tag: 'Showpiece' }]
+      },
+      { name: 'Beef Back Ribs', method: 'Smoke or Braise',
+        desc: "What's left after the ribeye comes off. Less meat, but incredible flavor — and cheap. Smoked low and slow, they rival any brisket.",
+        timing: '5-6 hours at 225°F smoked', bestFor: 'BBQ, weekend projects',
+        recipes: [{ name: 'Smoked Beef Ribs', desc: 'Dry rub, smoke at 225°F until 203°F internal. Wrap if needed. Rest an hour.', tag: 'Smoke' }]
+      }
+    ]
+  },
+  chuck: {
+    number: '04', name: 'Chuck',
+    subtitle: 'Shoulder and neck — deeply flavored, well-worked muscle.',
+    description: "The chuck comes from the front shoulder and neck of the steer. It's a hard-working muscle with lots of connective tissue, which means tons of flavor — but it needs low, slow cooking to break down and get tender. Chuck is where you get classic pot roasts, hearty stew meat, and the best burger grind in the shop.",
+    subprimals: [
+      { name: 'Chuck Roast', method: 'Braise',
+        desc: "The classic pot roast cut. Tight grain, plenty of marbling and connective tissue that melts into the sauce as it cooks low and slow.",
+        timing: '3-4 hours at 300°F', bestFor: 'Sunday dinner, Dutch oven meals',
+        recipes: [
+          { name: 'Classic Pot Roast', desc: 'Seared, then braised with carrots, onion, and red wine until fork-tender.', tag: 'Low & Slow' },
+          { name: 'Mississippi Pot Roast', desc: 'Chuck roast, pepperoncini, ranch seasoning, butter. Set it and forget it.', tag: 'Crockpot' }
+        ]
+      },
+      { name: 'Flat Iron Steak', method: 'Grill',
+        desc: "Cut from the top blade — one of the most tender cuts in the whole animal, and one most people have never tried. Rich beefy flavor, uniform thickness, perfect for high heat. A butcher's discovery that's become a steakhouse favorite.",
+        timing: '4-5 min per side on high heat', bestFor: 'Weeknight steak dinners, tacos',
+        recipes: [
+          { name: 'Grilled Flat Iron', desc: 'Simple salt & pepper, hot grill, rest 5 minutes before slicing against the grain.', tag: 'Grill' },
+          { name: 'Flat Iron Tacos', desc: 'Marinated in lime and cumin, grilled, sliced thin for street-style tacos.', tag: 'Marinade' }
+        ]
+      },
+      { name: 'Denver Steak', method: 'Grill or Pan Sear',
+        desc: "Cut from the underside of the shoulder — the fourth-most tender muscle in the whole animal. Rich marbling, bold beefy flavor, and a price tag that lets you grill it on a Tuesday. Slice against the grain.",
+        timing: '3-4 min per side over high heat', bestFor: 'Quick steak dinners, fajitas, stir-fries',
+        recipes: [
+          { name: 'Grilled Denver Steak', desc: 'Salt & pepper, rip-hot grill, rest 5 minutes, slice thin against the grain.', tag: 'Grill' },
+          { name: 'Denver Steak Tacos', desc: 'Marinated in lime and chili, seared, chopped — the meat for carne asada tacos that eat above their price.', tag: 'Tex-Mex' }
+        ]
+      },
+      { name: 'Chuck Eye Steak', method: 'Pan Sear',
+        desc: "Sometimes called the \'poor man\'s ribeye\' — cut from the same muscle as the ribeye, just a few inches forward. Big flavor at a fraction of the price.",
+        timing: '3-4 min per side in a hot cast iron', bestFor: 'Budget-friendly steak night',
+        recipes: [{ name: 'Butter-Basted Chuck Eye', desc: 'Cast iron, butter, garlic, thyme. Baste continuously for the last 2 minutes.', tag: 'Cast Iron' }]
+      },
+      { name: 'Ground Chuck', method: 'Various',
+        desc: "The gold standard for burgers. 80/20 fat ratio, rich beefy flavor that holds up to high-heat cooking.",
+        timing: '4 min per side for medium', bestFor: 'Burgers, meatloaf, chili',
+        recipes: [
+          { name: 'Butcher Shop Burger', desc: 'Loose pack, salt just before cooking, cast iron or grill. Nothing fancy needed.', tag: 'Classic' },
+          { name: 'Sunday Chili', desc: 'Brown the chuck, build the flavor base low and slow — it gets better every hour.', tag: 'Simmer' }
+        ]
+      },
+      { name: 'Stew Meat', method: 'Braise',
+        desc: "Cubes of chuck with the marbling and connective tissue that make a great braise. Turns silky and fall-apart tender with time in a low oven or slow cooker.",
+        timing: '2-3 hours simmered', bestFor: 'Beef stew, bourguignon, chili',
+        recipes: [
+          { name: 'Beef Bourguignon', desc: 'Seared beef, red wine, bacon, pearl onions, mushrooms. Low oven for 3 hours.', tag: 'Classic' },
+          { name: 'Hearty Beef Stew', desc: 'Browned beef with carrots, potatoes, onion, and stock. The stick-to-your-ribs kind.', tag: 'Comfort' }
+        ]
+      }
+    ]
+  },
+  round: {
+    number: '05', name: 'Round',
+    subtitle: 'The hind leg. Lean, honest, affordable.',
+    description: "The round is the back leg of the animal — a hard-working muscle, which means it's lean and less tender. But cooked right, it's one of the best values in the butcher case. Classic roast beef territory, plus London broil, jerky, and the world's best home-cut stir-fry beef.",
+    subprimals: [
+      { name: 'Top Round Roast', method: 'Roast (low & slow)',
+        desc: "The classic roast beef cut. Lean and affordable. Needs careful cooking — don\'t push past medium-rare or it\'ll dry out.",
+        timing: '200°F until 130°F internal', bestFor: 'Roast beef sandwiches, deli-style',
+        recipes: [{ name: 'Slow-Roasted Top Round', desc: 'Season, sear, then roast at 200°F until medium-rare. Slice paper-thin.', tag: 'Slice Thin' }]
+      },
+      { name: 'Eye of Round', method: 'Roast or Slice thin',
+        desc: "Cylindrical, extremely lean cut. Not for steaks — but slow-roasted or sliced paper-thin for sandwiches, it shines.",
+        timing: '225°F until 130°F internal', bestFor: 'Cold-cut sandwiches, jerky',
+        recipes: [{ name: 'Deli-Style Roast Beef', desc: 'Simple herb rub, low oven, chilled and sliced wafer-thin for sandwiches.', tag: 'Meal Prep' }]
+      },
+      { name: 'London Broil', method: 'Grill or Broil',
+        desc: "Typically a top or bottom round steak. Marinate, cook hot and fast to medium-rare, rest, then slice thin against the grain.",
+        timing: '4-5 min per side', bestFor: 'Big-flavor steak on a budget',
+        recipes: [{ name: 'Classic London Broil', desc: 'Overnight marinade in soy, Worcestershire, garlic. Hot grill. Slice very thin.', tag: 'Marinade' }]
+      },
+      { name: 'Rump Roast', method: 'Roast or Braise',
+        desc: "Cut from the top of the round near the hip. Lean but flavorful, with more marbling than the rest of the round. Works as a budget-friendly pot roast or, roasted carefully, a great roast beef.",
+        timing: '2-3 hours braised, or roast to 130°F internal', bestFor: 'Sunday roast beef, pot roast, French dip',
+        recipes: [
+          { name: 'Classic Rump Roast', desc: 'Salt overnight, roast low to medium-rare, rest, slice thin against the grain.', tag: 'Roast' },
+          { name: 'French Dip Sandwiches', desc: 'Slow-roasted rump, sliced thin, piled on toasted rolls with au jus for dipping.', tag: 'Sandwich' }
+        ]
+      }
+    ]
+  },
+  flank: {
+    number: '06', name: 'Flank',
+    subtitle: 'Lean, long-grained, full of flavor.',
+    description: "Flank steak comes from the abdominal muscles, just behind the short plate. It\'s lean with a long, pronounced grain — which means it absorbs marinades beautifully and needs to be sliced thin against the grain to eat well. A grill and a marinade away from a great meal.",
+    subprimals: [
+      { name: 'Flank Steak', method: 'Grill or Broil',
+        desc: "Long, flat, and lean. Takes a marinade as well as any cut in the butcher case. Cook to medium-rare, slice thin against the grain.",
+        timing: '4-5 min per side, rest, slice thin', bestFor: 'Carne asada, stuffed flank, stir-fry',
+        recipes: [
+          { name: 'Grilled Flank with Chimichurri', desc: 'Quick marinade, hot grill, topped with herbaceous chimichurri. Weeknight winner.', tag: 'Argentine' },
+          { name: 'Beef & Broccoli', desc: 'Sliced thin, velveted, stir-fried hot and fast with broccoli and garlic.', tag: 'Stir-Fry' }
+        ]
+      },
+      { name: 'Inside Skirt', method: 'Grill (hot & fast)',
+        desc: "From the diaphragm, inside the rib cage. Thinner and a bit leaner than the outside skirt, but with the same deep beefy flavor. Marinades penetrate beautifully. Trim the membrane, cook hot and fast, slice thin against the grain.",
+        timing: '2-3 min per side over very high heat', bestFor: 'Fajitas, carne asada, stir-fry',
+        recipes: [
+          { name: 'Fajitas Classic', desc: 'Lime, garlic, chili marinade. Screaming hot cast iron. Slice thin and pile on warm tortillas.', tag: 'Tex-Mex' },
+          { name: 'Carne Asada Tacos', desc: 'Citrus marinade, quick grill, chopped into street taco-sized pieces.', tag: 'Mexican' }
+        ]
+      }
+    ]
+  },
+  shortplate: {
+    number: '07', name: 'Short Plate',
+    subtitle: 'Belly of the beast. Skirt steak lives here.',
+    description: "The short plate is the underside of the animal, between the brisket and the flank. It gives us skirt steak and short ribs — two of the most flavor-packed cuts you can buy. Great for the grill, great for the smoker, and the foundation of great Mexican and Korean cooking.",
+    subprimals: [
+      { name: 'Outside Skirt', method: 'Grill (hot & fast)',
+        desc: "Long, thin, deeply flavored — the classic cut for fajitas and carne asada. From the outside of the diaphragm, thicker and more marbled than its inside-skirt cousin. Hot fire, quick cook, slice thin against the grain.",
+        timing: '2-3 min per side, very high heat', bestFor: 'Fajitas, carne asada, steak tacos',
+        recipes: [
+          { name: 'Carne Asada', desc: 'Citrus and garlic marinade, charcoal grill, charred edges. Chop for tacos.', tag: 'Mexican' },
+          { name: 'Steak Fajitas', desc: 'Marinate, hot cast iron, sliced and served with peppers and onions.', tag: 'Tex-Mex' }
+        ]
+      },
+      { name: 'Short Ribs (English cut)', method: 'Braise or Smoke',
+        desc: "Thick, meaty sections of rib. Braise them in wine until they fall off the bone, or smoke them like the Texans do.",
+        timing: '3 hours braised, or 8 hours smoked', bestFor: 'Braises, BBQ, Korean galbi',
+        recipes: [
+          { name: 'Red Wine Braised Short Ribs', desc: 'Seared, braised in wine and stock with aromatics for 3 hours. Luxurious.', tag: 'Luxe' },
+          { name: 'Korean Galbi', desc: 'Flanken-cut, marinated in soy, pear, garlic, and sugar. Fast grill.', tag: 'Korean' }
+        ]
+      },
+      { name: 'Hanger Steak', method: 'Grill or Pan Sear',
+        desc: "The butcher\'s secret. Only one per animal, deeply flavored, tender. Classic bistro cut in France (onglet).",
+        timing: '3-4 min per side', bestFor: 'Bistro dinners, steak frites',
+        recipes: [{ name: 'Steak Frites', desc: 'Pan-seared hanger, simple salt & pepper, served with frites and béarnaise.', tag: 'Bistro' }]
+      }
+    ]
+  },
+  brisket: {
+    number: '08', name: 'Brisket',
+    subtitle: "The smoker\'s cut. Tough becomes tender.",
+    description: "Brisket comes from the lower chest of the animal. It\'s a tough cut full of connective tissue — which is exactly what makes it magical when cooked low and slow. Texas barbecue wouldn\'t exist without it. Also home to classic corned beef and pastrami.",
+    subprimals: [
+      { name: 'Whole Brisket', method: 'Smoke',
+        desc: "The full packer brisket — flat and point together. A weekend project that rewards patience. Nothing beats it off the smoker.",
+        timing: '12-16 hours at 225°F', bestFor: 'Texas BBQ, large gatherings',
+        recipes: [{ name: 'Texas-Style Smoked Brisket', desc: 'Salt, pepper, smoke. Wrap at 165°F, pull at 203°F, rest at least an hour.', tag: 'BBQ' }]
+      },
+      { name: 'Brisket Flat', method: 'Braise or Smoke',
+        desc: "The leaner half of the brisket. Slices beautifully. The go-to for corned beef and Jewish-style braised brisket.",
+        timing: '3-4 hours braised', bestFor: 'Corned beef, pot roast',
+        recipes: [
+          { name: 'Braised Brisket', desc: 'Seared, braised with onions and stock for 3+ hours. Slice across the grain.', tag: 'Braise' },
+          { name: 'Corned Beef & Cabbage', desc: 'Cure 5-7 days, then simmer with cabbage, potatoes, and carrots.', tag: 'Irish' }
+        ]
+      },
+      { name: 'Brisket Point', method: 'Smoke',
+        desc: "The fattier, more marbled half of the brisket. Makes legendary burnt ends and shreds beautifully for sandwiches.",
+        timing: '12+ hours at 225°F', bestFor: 'Burnt ends, pulled beef',
+        recipes: [{ name: 'Burnt Ends', desc: 'Smoke whole, cube the point, sauce, return to smoker until candy-like.', tag: 'Kansas City' }]
+      }
+    ]
+  },
+  shank: {
+    number: '09', name: 'Shank',
+    subtitle: 'The slow-cook superstar.',
+    description: "The shank is the leg below the round — a heavily worked muscle with a big center bone full of marrow. Tough as leather if cooked fast, but braised low and slow, it becomes one of the richest, most tender cuts in the whole animal. The classic choice for osso buco.",
+    subprimals: [
+      { name: 'Beef Shank (Cross-Cut)', method: 'Braise',
+        desc: "Cross-sections of the shank, bone-in. The marrow enriches whatever you braise it with. Needs 3+ hours of low, wet heat.",
+        timing: '3-4 hours at 300°F', bestFor: 'Osso buco, rich stews',
+        recipes: [
+          { name: 'Beef Osso Buco', desc: 'Braised with wine, tomato, and aromatics until the meat falls off and marrow spreads like butter.', tag: 'Italian' },
+          { name: 'Rich Beef & Barley Soup', desc: 'Simmer shank with barley and root vegetables. The bone makes the broth.', tag: 'Soup' }
+        ]
+      }
+    ]
+  }
+};
 
-    p.addEventListener('click', () => {
-      renderPrimal(primalId);
-      parts.forEach(x => x.classList.remove('active'));
-      // mark every path with the same data-primal as active (handles dual-shank)
-      cowWrap.querySelectorAll('[data-primal="' + primalId + '"]').forEach(x => x.classList.add('active'));
-      setTimeout(() => {
-        detailInner.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    });
+const detailInner = document.getElementById('detailInner');
+const tooltip = document.getElementById('tooltip');
+const cowWrap = document.querySelector('.cow-wrap');
+const parts = document.querySelectorAll('.cow-part');
+
+parts.forEach(p => {
+  const primalId = p.dataset.primal;
+  const primal = PRIMALS[primalId];
+
+  p.addEventListener('mouseenter', () => {
+    if (primal) {
+      tooltip.textContent = primal.name;
+      tooltip.classList.add('visible');
+    }
   });
-}
+  p.addEventListener('mousemove', (e) => {
+    const rect = cowWrap.getBoundingClientRect();
+    tooltip.style.left = (e.clientX - rect.left + 15) + 'px';
+    tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+  });
+  p.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+  });
+
+  p.addEventListener('click', () => {
+    renderPrimal(primalId);
+    parts.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    setTimeout(() => {
+      detailInner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  });
+});
 
 function renderPrimal(id) {
   const p = PRIMALS[id];
@@ -616,8 +763,8 @@ function renderPrimal(id) {
   const cardsHTML = p.subprimals.map((sp, i) => `
     <div class="subprimal-card" data-index="${i}">
       <div class="number">No. ${String(i + 1).padStart(2, '0')}</div>
-      <h3>${escapeHtml(sp.name)}</h3>
-      <div class="method">${escapeHtml(sp.method)}</div>
+      <h3>${sp.name}</h3>
+      <div class="method">${sp.method}</div>
     </div>
   `).join('');
 
@@ -626,15 +773,15 @@ function renderPrimal(id) {
       <div class="detail-header">
         <div>
           <div class="primal-number">Primal No. ${p.number}</div>
-          <h2>${escapeHtml(p.name)}</h2>
-          <div class="subtitle">${escapeHtml(p.subtitle)}</div>
+          <h2>${p.name}</h2>
+          <div class="subtitle">${p.subtitle}</div>
         </div>
         <button class="close-btn" onclick="closeDetail()" aria-label="Close">
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1 L 13 13 M13 1 L 1 13"/></svg>
         </button>
       </div>
-      <p class="primal-description">${escapeHtml(p.description)}</p>
-      <div class="subprimals-label">Cuts from the ${escapeHtml(p.name.toLowerCase())}</div>
+      <p class="primal-description">${p.description}</p>
+      <div class="subprimals-label">Cuts from the ${p.name.toLowerCase()}</div>
       <div class="subprimal-grid" id="subGrid">${cardsHTML}</div>
       <div class="subprimal-detail" id="subDetail"></div>
     </div>
@@ -649,66 +796,59 @@ function renderPrimal(id) {
       renderSubprimal(p.subprimals[idx]);
     });
   });
-
-  // Auto-open the first cut so the panel doesn't feel empty
-  if (p.subprimals.length > 0) {
-    cards[0].classList.add('active');
-    renderSubprimal(p.subprimals[0]);
-  }
 }
 
 function renderSubprimal(sp) {
-  const subDetail = document.getElementById('subDetail');
-  if (!subDetail) return;
-  const recipesHTML = (sp.recipes || []).map(r => `
+  const detail = document.getElementById('subDetail');
+  const recipesHTML = sp.recipes.map(r => `
     <div class="recipe">
-      <div class="recipe-name">${escapeHtml(r.name)}</div>
-      <div class="recipe-desc">${escapeHtml(r.desc)}</div>
-      ${r.tag ? `<div class="recipe-tag">${escapeHtml(r.tag)}</div>` : ''}
+      <div class="recipe-name">${r.name}</div>
+      <div class="recipe-desc">${r.desc}</div>
+      <span class="recipe-tag">${r.tag}</span>
     </div>
   `).join('');
 
-  subDetail.innerHTML = `
+  detail.innerHTML = `
     <div class="fade-in">
       <div class="sp-header">
-        <div class="sp-eyebrow">${escapeHtml(sp.method)}</div>
-        <h3>${escapeHtml(sp.name)}</h3>
+        <div class="small">The Cut</div>
+        <h3>${sp.name}</h3>
       </div>
-      <p class="sp-description">${escapeHtml(sp.desc)}</p>
+      <p class="sp-description">${sp.desc}</p>
       <div class="info-grid">
         <div class="info-item">
+          <div class="label">Cooking Method</div>
+          <div class="value">${sp.method}</div>
+        </div>
+        <div class="info-item">
           <div class="label">Timing</div>
-          <div class="value">${escapeHtml(sp.timing)}</div>
+          <div class="value">${sp.timing}</div>
         </div>
         <div class="info-item">
           <div class="label">Best For</div>
-          <div class="value">${escapeHtml(sp.bestFor)}</div>
+          <div class="value">${sp.bestFor}</div>
         </div>
       </div>
-      ${recipesHTML ? `
-        <div class="recipes-section">
-          <h4>Try it like this</h4>
-          <div class="recipe-list">${recipesHTML}</div>
-        </div>
-      ` : ''}
+      <div class="recipes-section">
+        <h4>How to cook it</h4>
+        <div class="recipe-list">${recipesHTML}</div>
+      </div>
     </div>
   `;
-  // Reveal the panel — it's display:none by default until visible class is added
-  subDetail.classList.add('visible');
+  detail.classList.add('visible');
+  setTimeout(() => {
+    detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function closeDetail() {
-  detailInner.innerHTML = '';
-  cowWrap.querySelectorAll('.cow-part').forEach(x => x.classList.remove('active'));
-}
-
-function escapeHtml(s) {
-  return String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  detailInner.innerHTML = `
+    <div class="empty-state">
+      <div class="cut-icon">✦</div>
+      <p>Select a cut above to begin</p>
+    </div>
+  `;
+  document.querySelectorAll('.cow-part').forEach(x => x.classList.remove('active'));
 }
 </script>
 
