@@ -1,0 +1,9 @@
+{
+  "name": "butcher-boy-cut-guide",
+  "version": "1.0.0",
+  "description": "Interactive cut chart for Butcher Boy Meat Market — content powered by Airtable.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}
