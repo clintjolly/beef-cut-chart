@@ -38,9 +38,21 @@ async function fetchAll(tableId) {
 }
 
 export default async function handler(req, res) {
-  // CORS — allow your live site to fetch this
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Lock CORS to the domains that should actually call this endpoint.
+  // The vercel.app fallback covers preview deployments and direct testing.
+  const ALLOWED_ORIGINS = [
+    'https://beefcuts.butcherboyreno.com',
+    'https://porkcuts.butcherboyreno.com',  // future-proofing
+    'https://lambcuts.butcherboyreno.com',  // future-proofing
+    'https://butcherboyreno.com',
+    'https://www.butcherboyreno.com',
+  ];
+  const origin = req.headers.origin || '';
+  if (ALLOWED_ORIGINS.includes(origin) || origin.endsWith('.vercel.app')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Vary', 'Origin');
 
   if (!TOKEN) {
     return res.status(500).json({
