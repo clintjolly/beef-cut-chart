@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Your Cut — Butcher Boy Meat Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4ede0;
+    --cream-dark: #e8dec9;
+    --bb-orange: #f15b40;
+    --bb-orange-dark: #c94727;
+    --charcoal: #2a1f1c;
+    --muted: #6b5d54;
+    --accent: #c4915a;
+    --cow-default: #918676;
+    --shadow: 0 2px 8px rgba(42, 31, 28, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  header {
+    padding: 2rem 3rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(42, 31, 28, 0.08);
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .brand span { color: var(--bb-orange); }
+  .brand-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .intro {
+    text-align: center;
+    padding: 3rem 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .intro .kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bb-orange);
+    margin-bottom: 1rem;
+  }
+  .intro h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .intro h1 em {
+    font-style: italic;
+    color: var(--bb-orange);
+  }
+  .intro p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stage {
+    position: relative;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+  .hint {
+    font-family: 'Caveat', cursive;
+    font-size: 1.75rem;
+    color: var(--bb-orange);
+    position: absolute;
+    top: 1rem;
+    right: 10%;
+    transform: rotate(-4deg);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .cow-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .svg-mount {
+    width: 100%;
+  }
+  .cow-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cow-svg .cow-part {
+    cursor: pointer;
+    transition: fill 0.3s ease;
+  }
+  .cow-svg .cow-part:hover,
+  .cow-svg .cow-part.active {
+    fill: var(--bb-orange);
+  }
+  .cow-svg .cow-part.active {
+    fill: var(--bb-orange-dark);
+  }
+
+  /* Floating primal name label on hover */
+  .primal-tooltip {
+    position: absolute;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+    white-space: nowrap;
+  }
+  .primal-tooltip.visible { opacity: 1; }
+
+  .detail {
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .detail-inner {
+    background: #fbf7ee;
+    border: 1px solid var(--cream-dark);
+    padding: 3rem;
+    position: relative;
+    min-height: 400px;
+    box-shadow: var(--shadow);
+  }
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+  }
+  .empty-state .cut-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+  }
+  .empty-state p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+  }
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--cream-dark);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .detail-header .primal-number {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .detail-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+  }
+  .detail-header .subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+  .close-btn {
+    background: none;
+    border: 1px solid var(--charcoal);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .close-btn:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .close-btn svg { width: 14px; height: 14px; }
+
+  .primal-description {
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .subprimals-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bb-orange);
+    margin-bottom: 1.5rem;
+  }
+  .subprimal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .subprimal-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .subprimal-card:hover {
+    border-color: var(--bb-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(241, 91, 64, 0.15);
+  }
+  .subprimal-card.active {
+    border-color: var(--bb-orange);
+    background: #fff;
+  }
+  .subprimal-card .number {
+    font-family: 'Fraunces', serif;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .subprimal-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .subprimal-card .method {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .subprimal-detail {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--cream-dark);
+    display: none;
+  }
+  .subprimal-detail.visible { display: block; }
+
+  .sp-header { margin-bottom: 2rem; }
+  .sp-header .small {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .sp-header h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--bb-orange);
+  }
+  .sp-description {
+    font-size: 1rem;
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: var(--cream);
+    border-left: 3px solid var(--bb-orange);
+  }
+  .info-item .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .info-item .value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+  }
+
+  .recipes-section h4 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .recipes-section h4::before {
+    content: '—';
+    color: var(--bb-orange);
+    margin-right: 0.5rem;
+  }
+  .recipe-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .recipe {
+    padding: 1.25rem;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+  }
+  .recipe .recipe-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .recipe .recipe-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .recipe .recipe-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bb-orange);
+    margin-top: 0.75rem;
+  }
+
+  .cta {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .cta h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  .cta h3 em { color: var(--bb-orange); font-style: italic; }
+  .cta p {
+    color: rgba(244, 237, 224, 0.7);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+  .cta .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--bb-orange);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .cta .btn:hover { background: var(--bb-orange-dark); }
+
+  @media (max-width: 768px) {
+    header { padding: 1.5rem; }
+    .brand-meta { display: none; }
+    .stage { padding: 0 1rem; }
+    .hint { font-size: 1.25rem; right: 5%; top: -0.5rem; }
+    .detail { padding: 0 1rem; }
+    .detail-inner { padding: 1.5rem; }
+    .detail-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .subprimal-grid { grid-template-columns: 1fr; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeUp 0.4s ease-out both; }
+
+  .cow-loading {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="brand">Butcher Boy <span>Meat Market</span></a>
+  <span class="brand-meta">Reno, NV &nbsp;·&nbsp; Since 1934</span>
+</header>
+
+<section class="intro">
+  <div class="kicker">A Guide to the Cow</div>
+  <h1>Know your <em>cut.</em></h1>
+  <p>Every cut of beef tells a story — where it comes from on the animal, how it wants to be cooked, and what to do with it at home. Click any section of the cow to learn more.</p>
+</section>
+
+<section class="stage">
+  <div class="hint">Click on the cow</div>
+  <div class="cow-wrap">
+    <div class="svg-mount" id="svgMount">
+      <div class="cow-loading">Loading cuts…</div>
+    </div>
+    <div class="primal-tooltip" id="tooltip"></div>
+  </div>
+</section>
+
+<section class="detail">
+  <div class="detail-inner" id="detailInner">
+    <div class="empty-state" id="emptyState">
+      <div class="cut-icon">✦</div>
+      <p>Select a cut above to begin</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h3>Questions about a cut? <em>Ask a real butcher.</em></h3>
+  <p>Our team has been cutting meat in Reno for four generations. Call us, or come see us — we\\'ll help you pick the right cut for what you\\'re cooking.</p>
+  <a href="tel:7758256328" class="btn">Call 825-MEAT</a>
+</section>
+
+<script>
+// ============================================================
+// Butcher Boy Cut Guide — front-end
+// Fetches content from /api/content (which proxies Airtable),
+// renders the active animal\'s cut chart + interactive primals.
+// ============================================================
+
+const API_URL = '/api/content';
+const ACTIVE_ANIMAL_SLUG = 'beef';  // change to render a different animal
+
+let PRIMALS = {};   // populated after fetch — keyed by SVG path id
+let cowWrap, detailInner, tooltip;
+
+document.addEventListener('DOMContentLoaded', init);
+
+async function init() {
+  cowWrap     = document.querySelector('.cow-wrap');
+  detailInner = document.getElementById('detailInner');
+  tooltip     = document.getElementById('tooltip');
+  const svgMount = document.getElementById('svgMount');
+
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error('Content fetch failed: ' + res.status);
+    const data = await res.json();
+
+    const animal = (data.animals || []).find(a => a.slug === ACTIVE_ANIMAL_SLUG);
+    if (!animal) throw new Error('Active animal not found: ' + ACTIVE_ANIMAL_SLUG);
+
+    // Index primals by their SVG path id so click handlers can find them
+    PRIMALS = {};
+    animal.primals.forEach((p, i) => {
+      PRIMALS[p.svgPathId] = {
+        number: String(i + 1).padStart(2, '0'),
+        name: p.name,
+        subtitle: p.subtitle,
+        description: p.description,
+        subprimals: p.cuts.map(c => ({
+          name: c.name,
+          method: c.method,
+          desc: c.desc,
+          timing: c.timing,
+          bestFor: c.bestFor,
+          photo: c.photo,
+          recipes: c.recipes,
+        })),
+      };
+    });
+
+    // Load the SVG (from Airtable attachment URL) and wire it up
+    if (animal.svgUrl) {
+      await loadCowSvg(animal.svgUrl, svgMount);
+    } else {
+      svgMount.innerHTML = '<p class="cow-loading">No cut chart uploaded yet for ' + animal.name + '.</p>';
+      return;
+    }
+
+    wireInteractions();
+  } catch (err) {
+    console.error(err);
+    svgMount.innerHTML = '<p class="cow-loading">Couldn\'t load the cut chart. Try refreshing in a minute.</p>';
+  }
+}
+
+async function loadCowSvg(url, svgMount) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('SVG fetch failed: ' + res.status);
+  const svgText = await res.text();
+  // Drop the SVG into the dedicated mount container (NOT cowWrap, which holds the tooltip)
+  svgMount.innerHTML = svgText;
+
+  const svgEl = svgMount.querySelector('svg');
+  if (svgEl) {
+    svgEl.classList.add('cow-svg');
+    // Make it responsive — strip explicit width/height
+    svgEl.removeAttribute('width');
+    svgEl.removeAttribute('height');
+  }
+
+  // Map of SVG path id → primal key in PRIMALS.
+  // Most are 1:1, but the steer SVG has TWO shank paths (front leg, rear leg)
+  // and we want both to route to our single Shank primal entry.
+  const SVG_TO_PRIMAL = {
+    'chuck':       'chuck',
+    'rib':         'rib',
+    'shortloin':   'shortloin',
+    'sirloin':     'sirloin',
+    'round':       'round',
+    'brisket':     'brisket',
+    'shortplate':  'shortplate',
+    'flank':       'flank',
+    'shank-rear':  'shank',
+    'shank-front': 'shank',
+  };
+
+  // Wire each SVG path to its corresponding primal, and force-reset its fill
+  // so any color baked into the source SVG (e.g. an originally-orange Sirloin)
+  // doesn't make it look pre-selected.
+  const PRIMAL_FILL = '#918676';  // matches the gray used by the rest of the cow
+  Object.entries(SVG_TO_PRIMAL).forEach(([svgId, primalKey]) => {
+    const el = svgMount.querySelector('#' + CSS.escape(svgId));
+    if (!el) return;
+    if (!PRIMALS[primalKey]) return;  // Airtable has no entry for this primal
+    el.classList.add('cow-part');
+    el.setAttribute('data-primal', primalKey);
+    // Force-reset fill so the CSS hover/active states control color
+    el.setAttribute('fill', PRIMAL_FILL);
+  });
+}
+
+function wireInteractions() {
+  const parts = cowWrap.querySelectorAll('.cow-part');
+  parts.forEach(p => {
+    const primalId = p.dataset.primal;
+    const primal = PRIMALS[primalId];
+
+    p.addEventListener('mouseenter', () => {
+      if (primal) {
+        tooltip.textContent = primal.name;
+        tooltip.classList.add('visible');
+      }
+    });
+    p.addEventListener('mousemove', (e) => {
+      const rect = cowWrap.getBoundingClientRect();
+      tooltip.style.left = (e.clientX - rect.left + 15) + 'px';
+      tooltip.style.top  = (e.clientY - rect.top - 10) + 'px';
+    });
+    p.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+    });
+
+    p.addEventListener('click', () => {
+      renderPrimal(primalId);
+      parts.forEach(x => x.classList.remove('active'));
+      // mark every path with the same data-primal as active (handles dual-shank)
+      cowWrap.querySelectorAll('[data-primal="' + primalId + '"]').forEach(x => x.classList.add('active'));
+      setTimeout(() => {
+        detailInner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    });
+  });
+}
+
+function renderPrimal(id) {
+  const p = PRIMALS[id];
+  if (!p) return;
+
+  const cardsHTML = p.subprimals.map((sp, i) => `
+    <div class="subprimal-card" data-index="${i}">
+      <div class="number">No. ${String(i + 1).padStart(2, '0')}</div>
+      <h3>${escapeHtml(sp.name)}</h3>
+      <div class="method">${escapeHtml(sp.method)}</div>
+    </div>
+  `).join('');
+
+  detailInner.innerHTML = `
+    <div class="fade-in">
+      <div class="detail-header">
+        <div>
+          <div class="primal-number">Primal No. ${p.number}</div>
+          <h2>${escapeHtml(p.name)}</h2>
+          <div class="subtitle">${escapeHtml(p.subtitle)}</div>
+        </div>
+        <button class="close-btn" onclick="closeDetail()" aria-label="Close">
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1 L 13 13 M13 1 L 1 13"/></svg>
+        </button>
+      </div>
+      <p class="primal-description">${escapeHtml(p.description)}</p>
+      <div class="subprimals-label">Cuts from the ${escapeHtml(p.name.toLowerCase())}</div>
+      <div class="subprimal-grid" id="subGrid">${cardsHTML}</div>
+      <div class="subprimal-detail" id="subDetail"></div>
+    </div>
+  `;
+
+  const cards = detailInner.querySelectorAll('.subprimal-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.index);
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      renderSubprimal(p.subprimals[idx]);
+    });
+  });
+
+  // Auto-open the first cut so the panel doesn't feel empty
+  if (p.subprimals.length > 0) {
+    cards[0].classList.add('active');
+    renderSubprimal(p.subprimals[0]);
+  }
+}
+
+function renderSubprimal(sp) {
+  const subDetail = document.getElementById('subDetail');
+  if (!subDetail) return;
+  const recipesHTML = (sp.recipes || []).map(r => `
+    <div class="recipe-card">
+      <div class="recipe-tag">${escapeHtml(r.tag)}</div>
+      <h4>${escapeHtml(r.name)}</h4>
+      <p>${escapeHtml(r.desc)}</p>
+    </div>
+  `).join('');
+
+  subDetail.innerHTML = `
+    <div class="fade-in">
+      <div class="sub-header">
+        <h3>${escapeHtml(sp.name)}</h3>
+        <span class="sub-method">${escapeHtml(sp.method)}</span>
+      </div>
+      <p class="sub-desc">${escapeHtml(sp.desc)}</p>
+      <div class="sub-meta">
+        <div><strong>Timing:</strong> ${escapeHtml(sp.timing)}</div>
+        <div><strong>Best for:</strong> ${escapeHtml(sp.bestFor)}</div>
+      </div>
+      ${recipesHTML ? `<div class="recipes-label">Try it like this</div><div class="recipe-grid">${recipesHTML}</div>` : ''}
+    </div>
+  `;
+  // Reveal the panel — it's display:none by default until visible class is added
+  subDetail.classList.add('visible');
+}
+
+function closeDetail() {
+  detailInner.innerHTML = '';
+  cowWrap.querySelectorAll('.cow-part').forEach(x => x.classList.remove('active'));
+}
+
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+
+</body>
+</html>
